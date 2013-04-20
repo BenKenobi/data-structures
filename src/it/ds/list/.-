@@ -1,0 +1,37 @@
+CC      := gcc
+TARGET  := array
+SRCS    := array.c
+OBJS    := ${SRCS:.c=.o}
+
+CFLAGS = -g3
+LDFLAGS =
+LIBS    =
+
+.PHONY: all clean
+
+all:: ${TARGET}
+
+${TARGET}: ${OBJS}
+	${CC} ${LDFLAGS} -o $@ $^ ${LIBS}
+
+${OBJS}: %.o: %.c
+	${CC} ${CFLAGS} -o $@ -c $<
+
+clean::
+	-rm -f *~ *.dat *.png
+
+distclean:: clean
+	-rm -f ${TARGET} *.o
+
+test::	clean run plot
+
+run::
+	./${TARGET}
+
+plot::
+	gnuplot -e "set term png; set output 'times.png'; plot 'times.dat'"
+	gnuplot -e "set term png; set output 'found.png'; plot 'found.dat'"
+
+display::
+	eog times.png
+	eog found.png
