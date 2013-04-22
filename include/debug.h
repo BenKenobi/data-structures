@@ -3,12 +3,12 @@
 
 #include <stdio.h>
 
-#define DEBUG_PRINT_ENABLED   1
+//#define DEBUG_PRINT_ENABLED   1
 
 #if DEBUG_PRINT_ENABLED
-#define DEBUG printf
+#define DEBUG(fmt...) printf(fmt)
 #else
-#define DEBUG(format, args...) ((void)0)
+#define DEBUG(fmt...)
 #endif
 
 #endif /* DEBUG_H_ */

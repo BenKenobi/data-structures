@@ -1,8 +1,11 @@
-#include <array_list.h>
+#include <ArrayList.h>
 #include <debug.h>
 
 //TODO Tests
 //TODO warning for returning NULL as T
+//TODO resize() may allocate too big a size and fail
+//TODO resize() may have a memory leak, we shouldn't crash at 33768 elements
+//TODO do 1 resize, read all elements to check they're all right
 
 namespace it {
 
@@ -11,12 +14,14 @@ namespace ds {
 namespace list {
 
 ArrayList::ArrayList() {
+    DEBUG("%s: class constructor\n", __func__);
     len = 10;
     nElem = 0;
     a = new int[len];
 }
 
 ArrayList::~ArrayList() {
+    DEBUG("%s: class destructor\n", __func__);
     delete[] a;
 }
 

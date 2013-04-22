@@ -1,6 +1,6 @@
 CC      := g++
 #TARGET	:= array_list
-SRCS    := array_list.cpp
+SRCS    := ArrayList.cpp
 OBJS    := $(SRCS:.cpp=.o)
 DISS	:= $(OBJS:.o=.dis)
 DISASS	:= objdump -S
@@ -27,9 +27,8 @@ clean:
 	rm -f $(TOP)/obj/$(MOD_PATH)/*.o $(TOP)/obj/$(MOD_PATH)/*.dis
 
 distclean: clean
-	rm -f $(TOP)/bin/$(TARGET)
+
 
 disassembly:
 	$(DISASS) $(TOP)/obj/$(MOD_PATH)/$(OBJS) > $(TOP)/obj/$(MOD_PATH)/$(DISS)
-
 
